@@ -1,6 +1,13 @@
 import React, { Component } from 'react';
 import './App.css';
-import Person from './Person/Person';
+
+import { Button } from 'carbon-components-react';
+import { Icon } from 'carbon-components-react'
+
+import Persons from '../components/Persons/Persons';
+import Webcam from 'react-webcam';
+import Cockpit from '../components/Cockpit/Cockpit';
+import Header from '../components/Header/Header'
 
 class App extends Component {
   state = {
@@ -46,41 +53,33 @@ class App extends Component {
   }
 
   render() {
-    const style = {
-      backgroundColor: 'white',
-      font: 'inherit',
-      border: '1px solid blue',
-      padding: '8px',
-      cursor: 'pointer'
-    }
 
     let persons = null;
     if (this.state.showPersons) {
       persons = (
-        <div>
-          {this.state.persons.map((person, index) => {
-            return <Person 
-                click={() => this.deletePersonHandler(index)}
-                name={person.name}
-                age={person.age}
-                key={person.id}
-                changed={(event) => this.nameChangedHandler(event, person.id)} />
-          })}
-        </div>
+          <Persons 
+            persons={this.state.persons}
+            clicked={this.deletePersonHandler}
+            changed={this.nameChangedHandler}
+          />
       );
     }
 
     return (
-      <div className="App">
-        <h1>Hi, I'm a React app</h1>
-        <p>This is really working!</p>
-        <button 
-          onClick={this.togglePersonsHandler}
-          style={style}>
-          Toggle persons
-        </button>
-        {persons}
-      </div>
+        <div className='App'>
+          <Header/>
+          <Cockpit 
+            showPersons={this.state.showPersons}
+            persons={this.state.persons}
+            clicked={this.togglePersonsHandler} />
+          {persons}
+          <Webcam />
+          <Button>Hello world!</Button>
+          <Icon 
+            name='icon--add--solid'
+            fill='grey'/>
+        </div>
+
     );
   }
 }
