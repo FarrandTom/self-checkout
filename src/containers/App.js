@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
 import './App.css';
 
-import { Button } from 'carbon-components-react';
-import { Icon } from 'carbon-components-react'
-
 import Persons from '../components/Persons/Persons';
-import Webcam from 'react-webcam';
-import Cockpit from '../components/Cockpit/Cockpit';
 import Header from '../components/Header/Header'
+import Webcam from '../components/Webcam/Webcam'
+import Groceries from '../components/Groceries/Groceries'
 
 class App extends Component {
   state = {
@@ -66,18 +63,16 @@ class App extends Component {
     }
 
     return (
-        <div className='App'>
+        <div className='App bx--grid'>
           <Header/>
-          <Cockpit 
-            showPersons={this.state.showPersons}
-            persons={this.state.persons}
-            clicked={this.togglePersonsHandler} />
-          {persons}
-          <Webcam />
-          <Button>Hello world!</Button>
-          <Icon 
-            name='icon--add--solid'
-            fill='grey'/>
+          <div className='bx--row'>
+            <div className='bx--col-xs-6'>
+              <Webcam />
+            </div>
+            <div className='bx--col-xs-6'>
+              <Groceries />
+            </div>
+          </div>
         </div>
 
     );

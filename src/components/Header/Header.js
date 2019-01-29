@@ -1,16 +1,16 @@
 import React from 'react';
 import './Header.scss';
 
-import { Icon } from 'carbon-components-react'
-
 const header = () => {
     return (
-        <div className='Header'>
-        <Icon 
-            name='icon--favorite--outline'/>
-            <header>
-                <p>Self-Checkout</p>
-            </header>
+        <div className='Header bx--grid'>
+            <div className='bx--row'>
+                <div className='bx--col-xs-5'>
+                    <header>
+                        <h2>Self-Checkout</h2>
+                    </header>
+                </div>
+            </div>
         </div>
     )
 }

@@ -1,0 +1,21 @@
+.arrow-right {
+    margin-left: 10px
+}
+
+.pay-now-button {
+    font-size: 20px;
+    padding-top: 20px
+}
+
+.table-button-group {
+    padding: 30px 30px
+}
+
+.groceries-table {
+    display: block;
+    background-color: white;
+    height: 400px;
+    width: 100%;
+    overflow-y: scroll;
+    border: 1px solid black;
+}

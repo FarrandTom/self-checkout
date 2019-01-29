@@ -1,0 +1,27 @@
+/* // @import '~carbon-components/scss/globals/scss/styles.scss'; */
+
+.Webcam {
+    text-align: center;
+    border: 1px solid black;
+    background-color: white;
+}
+
+.logo-container {
+    border: 1px solid black;
+    /* // border-radius: $spacing-lg; */
+    display: inline-block;
+    margin-top: 8px;
+}
+
+.camera-logo-styling {
+    background-color: #f4f7fb;
+    padding: 0px 8px;
+    margin-bottom: 8px;
+}
+
+.restart-logo-styling {
+    background-color: #3d70b2;
+    padding: 4px 8px;
+    height: 32px;
+    margin-left: 4px;
+}
