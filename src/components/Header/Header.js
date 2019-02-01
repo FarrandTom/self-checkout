@@ -3,11 +3,11 @@ import './Header.css';
 
 const header = () => {
     return (
-        <div className='Header bx--grid'>
+        <div className='Header'>
             <div className='bx--row'>
-                <div className='bx--col-xs-5'>
+                <div>
                     <header>
-                        <h2>Self-Checkout</h2>
+                        <h1>Self-Checkout</h1>
                     </header>
                 </div>
             </div>

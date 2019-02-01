@@ -37,10 +37,17 @@ const Groceries = (props) => {
                     <Grocery/>
                     <Grocery/>
                     <Grocery/>
+                    <Grocery/>
+                    <Grocery/>
                 </table>
+                <div className='sub-total bx--row'>
+                        <p>Sub-Total</p>
+                        <p>£4.50</p>
+                    </div>
             </div>
-            <div className='pay-now-button'>
-                <Button>Pay now! 
+            <div className='pay-now-button-container'>
+                <Button
+                    className='pay-now-button'>Pay now
                 <Icon 
                     className='arrow-right'
                     name='icon--arrow--right'
