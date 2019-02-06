@@ -2,14 +2,14 @@ import React from 'react';
 
 const Grocery = (props) => {
     return (
-        <tr>
+        <tr onClick={props.click}>
             <td>
                 <input data-event="select" id="bx--checkbox" class="bx--checkbox" type="checkbox" value="green" name="checkbox" />
                 <label for="bx--checkbox" class="bx--checkbox-label" aria-label="Label name"></label>
             </td>
-            <td>Avocado</td>
-            <td>1</td>
-            <td>£1.50</td>
+            <td>{props.name}</td>
+            <td>{props.quantity}</td>
+            <td>£{props.price}</td>
         </tr>
     )
 }

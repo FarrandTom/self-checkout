@@ -7,6 +7,18 @@ import { Button } from 'carbon-components-react';
 import { Icon } from 'carbon-components-react';
 
 const Groceries = (props) => {
+    
+    let groceries = (
+        <div>
+            {props.groceries_array.map(grocery => {
+                return <Grocery 
+                name={grocery.name}
+                quantity={grocery.quantity}
+                price={grocery.price}/>
+            })}
+        </div>
+    )
+
     return (
         <div className='table-button-group'>
             <div className='groceries-table'>
@@ -34,11 +46,7 @@ const Groceries = (props) => {
                             </th>
                         </tr>
                     </thead>
-                    <Grocery/>
-                    <Grocery/>
-                    <Grocery/>
-                    <Grocery/>
-                    <Grocery/>
+                    {groceries}
                 </table>
                 <div className='sub-total bx--row'>
                         <p>Sub-Total</p>
