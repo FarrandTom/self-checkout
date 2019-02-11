@@ -1,6 +1,8 @@
 # flask_tensorflow/app.py
 
 from flask import Flask, jsonify, request
+from flask_cors import CORS
+
 from scipy.misc import imread, imresize
 import numpy as np
 import tensorflow as tf
@@ -11,6 +13,10 @@ import re, time, base64
 
 
 app = Flask(__name__)
+# Adding Cross Origin Resource Sharing to allow requests made from the front-end
+# to be successful.
+CORS(app)
+
 MODEL_PATH = './model/graph.pb' # I have changed these! 
 LABEL_PATH = './model/labels.txt'
 
@@ -32,7 +38,7 @@ def getI420FromBase64(codec):
 
 @app.route('/')
 def homepage():
-    return 'Hi Ed'
+    return 'This backend serves as a REST API for the React front end. Try running npm start from the self-checkout folder.'
 
 @app.route('/detection', methods=['POST'])
 def detection():
