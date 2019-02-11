@@ -7,28 +7,12 @@ import { Button } from 'carbon-components-react';
 import { Icon } from 'carbon-components-react';
 
 const Groceries = (props) => {
-    
-    let groceries = (
-        <div>
-            {props.groceries_array.map(grocery => {
-                return <Grocery 
-                name={grocery.name}
-                quantity={grocery.quantity}
-                price={grocery.price}/>
-            })}
-        </div>
-    )
-
     return (
         <div className='table-button-group'>
             <div className='groceries-table'>
                 <table className='bx--data-table-v2'>
                     <thead>
                         <tr>
-                            <th>
-                                <input data-event="select-all" id="bx--checkbox" className="bx--checkbox" type="checkbox" value="green" name="checkbox" />
-                                <label for="bx--checkbox" className="bx--checkbox-label" aria-label="Label name"></label>
-                            </th>
                             <th>
                                 <span className='bx--table-header-label'>
                                     Name
@@ -46,12 +30,16 @@ const Groceries = (props) => {
                             </th>
                         </tr>
                     </thead>
-                    {groceries}
+                    <tbody>
+                        {props.groceries.map(grocery => {
+                            return <Grocery 
+                            key={grocery.id}
+                            name={grocery.name}
+                            quantity={grocery.quantity}
+                            price={grocery.price.toString()}/>
+                        })}
+                    </tbody>
                 </table>
-                <div className='sub-total bx--row'>
-                        <p>Sub-Total</p>
-                        <p>£4.50</p>
-                    </div>
             </div>
             <div className='pay-now-button-container'>
                 <Button
