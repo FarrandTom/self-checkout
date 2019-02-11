@@ -124,9 +124,6 @@ if __name__ == '__main__':
 
     #G Enforce that no new nodes are added
     graph.finalize()
-    print('Done.')
-
-    print('Configuring TensorFlow Detection Graph..')
 
     sess_det = tf.Session(graph=graph, config=sess_config)
 
