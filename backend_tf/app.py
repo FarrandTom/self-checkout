@@ -1,5 +1,3 @@
-# flask_tensorflow/app.py
-
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 
@@ -13,17 +11,20 @@ import re, time, base64
 
 
 app = Flask(__name__)
+
 # Adding Cross Origin Resource Sharing to allow requests made from the front-end
 # to be successful.
 CORS(app)
 
-MODEL_PATH = './model/graph.pb' # I have changed these! 
+# Defining the model configuration files.
+# Change these files to add your own model!
+MODEL_PATH = './model/graph.pb'
 LABEL_PATH = './model/labels.txt'
 
 MODEL_DETECT_PATH = './model/frozen_inference_graph.pb'
 
 ##################################################
-# REST API Endpoints For Web App
+# Utilities
 ##################################################
 
 
@@ -36,9 +37,44 @@ def getI420FromBase64(codec):
     return img
 
 
+def readLabels():
+    # Read each line of label file and strip \n
+    labels = [label.rstrip('\n') for label in open(LABEL_PATH)]
+    return labels
+
+
+def apiResponseCreator_det(inputs, outputs):
+	return dict(list(zip(inputs,outputs)))
+
+
+def apiResponseCreator(labels, classifications):
+    return dict(zip(labels, classifications))
+
+
+def printTensors(model_file):
+    # read protobuf into graph_def
+    with tf.gfile.GFile(model_file, "rb") as f:
+        graph_def = tf.GraphDef()
+        graph_def.ParseFromString(f.read())
+
+    # import graph_def
+    with tf.Graph().as_default() as graph:
+        tf.import_graph_def(graph_def)
+
+    # print operations
+    for operation in graph.get_operations():
+        print(operation.name)
+
+
+##################################################
+# REST API Endpoints For Web App
+##################################################
+
+
 @app.route('/')
 def homepage():
     return 'This backend serves as a REST API for the React front end. Try running npm start from the self-checkout folder.'
+
 
 @app.route('/detection', methods=['POST'])
 def detection():
@@ -68,36 +104,9 @@ def detection():
     return jsonify(prediction_scores_det.tolist())
 
 
-
-
 ##################################################
-# Utilities
+# Starting the server
 ##################################################
-
-def readLabels():
-    # Read each line of label file and strip \n
-    labels = [label.rstrip('\n') for label in open(LABEL_PATH)]
-    return labels
-
-def apiResponseCreator_det(inputs, outputs):
-	return dict(list(zip(inputs,outputs)))
-
-def apiResponseCreator(labels, classifications):
-    return dict(zip(labels, classifications))
-
-def printTensors(model_file):
-    # read protobuf into graph_def
-    with tf.gfile.GFile(model_file, "rb") as f:
-        graph_def = tf.GraphDef()
-        graph_def.ParseFromString(f.read())
-
-    # import graph_def
-    with tf.Graph().as_default() as graph:
-        tf.import_graph_def(graph_def)
-
-    # print operations
-    for operation in graph.get_operations():
-        print(operation.name)
 
 
 if __name__ == '__main__':
