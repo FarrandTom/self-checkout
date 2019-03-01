@@ -30,9 +30,13 @@ MODEL_DETECT_PATH = './model/frozen_inference_graph.pb'
 
 def getI420FromBase64(codec):
     """ Convert image from a base64 bytes stream to an image. """
+    print("inside fuction I420")
     base64_data = re.sub(b'^data:image/.+;base64,', b'', codec)
+    #print(base64_data)
     byte_data = base64.b64decode(base64_data)
+    #print(byte_data)
     image_data = BytesIO(byte_data)
+    print(image_data)
     img = Image.open(image_data)
     return img
 
@@ -99,9 +103,42 @@ def detection():
     prediction_boxes_det=tf_results_det[1]
     prediction_num_det=tf_results_det[3]
 
+    print("----------------------------")
+    print(predictions_det)
     print(prediction_scores_det)
+    print("----------------------------")
 
-    return jsonify(prediction_scores_det.tolist())
+    threshold = 0.04
+
+
+    num=int(prediction_num_det)
+    predict_list=predictions_det[0].astype(int).tolist()
+    scores = prediction_scores_det[0]
+    label=[]
+
+    for i in range(num):
+        if scores[i]>threshold:
+            exist=0
+            if i == 0:
+                label.append([menu['item'][str(predict_list[i])],menu['price'][str(predict_list[i])],1])
+                exist = 1
+            else:
+                ind = [menu['item'][str(predict_list[i])],menu['price'][str(predict_list[i])],1]
+                for j in range(len(label)):
+                    if ind[0] == label[j][0]:
+                        label[j][2]+=1
+                        label[j][1]=ind[1]*label[j][2]
+                        exist=1
+
+            if exist == 0:
+                label.append([menu['item'][str(predict_list[i])],menu['price'][str(predict_list[i])],1])
+                    
+
+
+    print("number and list of items that above the threshold")
+    print(len(label))
+    print(label)
+    return jsonify(label)
 
 
 ##################################################
@@ -149,5 +186,40 @@ if __name__ == '__main__':
     detection_scores=detection_scores_op.outputs[0]
     detection_num_op=graph.get_operation_by_name('num_detections')
     detection_num=detection_num_op.outputs[0]
+
+
+
+    menu = {'item' : { '1':'Red Pepper',
+'2' : 'White Onion',
+'3': 'Carrot',
+'4': 'Banana',
+'5': 'Red Onion',
+'6': 'Lemon',
+'7': 'Garlic',
+'8': 'Orange',
+'9': 'Grapefruit',
+'10': 'Orange Pepper',
+'11': 'Green Pepper',
+'12': 'Leek',
+'13': 'Pear',
+'14': 'Apple',
+'15': 'Sweet Potato',
+},
+ 'price' : { '1':1.2,
+'2' : 1.25,
+'3': 1.5,
+'4': 1.8,
+'5': 0.9,
+'6': 0.85,
+'7': 0.3,
+'8': 1.0,
+'9': 2.5,
+'10': 0.7,
+'11': 0.55,
+'12': 2.0,
+'13': 1.5,
+'14': 1.2,
+'15': 0.35}
+}
 
     app.run(debug=True, host='0.0.0.0')
