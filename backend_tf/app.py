@@ -30,9 +30,11 @@ MODEL_DETECT_PATH = './model/frozen_inference_graph.pb'
 
 def getI420FromBase64(codec):
     """ Convert image from a base64 bytes stream to an image. """
+    print("check!!!")
     base64_data = re.sub(b'^data:image/.+;base64,', b'', codec)
     byte_data = base64.b64decode(base64_data)
     image_data = BytesIO(byte_data)
+    print(image_data)
     img = Image.open(image_data)
     return img
 

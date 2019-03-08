@@ -11,24 +11,19 @@ import CameraIcon from '../../assets/icons8-camera-100.png'
 
 class WebcamCapture extends Component {
 
-    state = {
-            imageData: null,
-            image_name: "",
-            saveImage: false
-    }
-
     setRef = webcam => {
         this.webcam = webcam;
       };
     
     captureHandler = () => {
         const imageSrc = this.webcam.getScreenshot();
-        this.setState({
-            imageData: imageSrc
-        })
-        axios.post('http://localhost:5000/detection', imageSrc)
+        let detectionData;
+        const placeholderData = {id: '2soijsoijefo', name: "Pear", quantity: 1, price: 1.50};
+
+        axios.post('https://jsonplaceholder.typicode.com/posts', placeholderData)
             .then(response => {
-                console.log(response);
+                detectionData = response.data
+                this.props.callbackFromParent(detectionData);
             });   
     };
     

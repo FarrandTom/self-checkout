@@ -8,11 +8,7 @@ import Groceries from '../components/Groceries/Groceries'
 
 class App extends Component {
   state = {
-    groceries_array: [
-      {id: 'rihs4iaiowj3', name: "Avocado", quantity: 2, price: '1.50'},
-      {id: 'vaoiwjd109u1', name: "Orange", quantity: 3, price: '2.00'},
-      {id: '2soijsoijefo', name: "Pear", quantity: 1, price: '0.75'}
-    ]
+    groceries_array: []
   }
 
   deleteGroceryHandler = (groceryIndex) => {
@@ -24,6 +20,16 @@ class App extends Component {
     groceries.splice(groceryIndex, 1);
     this.setState({groceries: groceries})
   }
+  
+  // Fruit data from backend. 
+  // The Webcam component sends an Axios POST request to the backend which returns the detected fruit
+  // This data is passed to the state via the below callback, which the Webcam component executes.
+  updateGroceryStateHandler = (dataFromChild) => {
+    console.log(dataFromChild)
+    const newState = [...this.state.groceries_array, dataFromChild]
+    this.setState({groceries_array: newState})
+    console.log(this.state)
+  }
 
   render() {
 
@@ -32,7 +38,8 @@ class App extends Component {
           <Header/>
           <div className='bx--row'>
             <div className='bx--col-xs-6'>
-              <WebcamCapture />
+              <WebcamCapture 
+              callbackFromParent={this.updateGroceryStateHandler}/>
             </div>
             <div className='bx--col-xs-6'>
               <Groceries
