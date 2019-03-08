@@ -18,9 +18,8 @@ class WebcamCapture extends Component {
     captureHandler = () => {
         const imageSrc = this.webcam.getScreenshot();
         let detectionData;
-        const placeholderData = {id: '2soijsoijefo', name: "Pear", quantity: 1, price: 1.50};
 
-        axios.post('https://jsonplaceholder.typicode.com/posts', placeholderData)
+        axios.post('http://localhost:5000/detection', imageSrc)
             .then(response => {
                 detectionData = response.data
                 this.props.callbackFromParent(detectionData);
