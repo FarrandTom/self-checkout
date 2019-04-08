@@ -30,37 +30,13 @@ MODEL_DETECT_PATH = './model/frozen_inference_graph.pb'
 
 
 menu = {'item' : 
-    { '1':'Red Pepper',
-    '2' : 'White Onion',
-    '3': 'Carrot',
-    '4': 'Banana',
-    '5': 'Red Onion',
-    '6': 'Lemon',
-    '7': 'Garlic',
-    '8': 'Orange',
-    '9': 'Grapefruit',
-    '10': 'Orange Pepper',
-    '11': 'Green Pepper',
-    '12': 'Leek',
-    '13': 'Pear',
-    '14': 'Apple',
-    '15': 'Sweet Potato',
+    { '1':'banana',
+    '2' : 'orange',
+    '3': 'apple'
     },
     'price' : { '1':1.2,
-    '2' : 1.25,
-    '3': 1.5,
-    '4': 1.8,
-    '5': 0.9,
-    '6': 0.85,
-    '7': 0.3,
-    '8': 1.0,
-    '9': 2.5,
-    '10': 0.7,
-    '11': 0.55,
-    '12': 2.0,
-    '13': 1.5,
-    '14': 1.2,
-    '15': 0.35}
+    '2': 1.25,
+    '3': 1.5 }
     }
 
 ##################################################
@@ -145,8 +121,7 @@ def detection():
     # print(prediction_scores_det)
     # print("----------------------------")
 
-    threshold = 0.01
-
+    threshold = 0.85
 
     num=int(prediction_num_det)
     predict_list=predictions_det[0].astype(int).tolist()
