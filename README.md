@@ -73,25 +73,25 @@ Follow the instructions below to build this docker container and run the app. Pl
 1. Clone the repository
 
 
-### `git clone https://github.com/FarrandTom/self-checkout.git`
+#### `git clone https://github.com/FarrandTom/self-checkout.git`
 
 2. Navigate to the code repository
 
 
-### `cd self-checkout`
+#### `cd self-checkout`
 
 
 3. Build the docker container
 
 
-### `docker build -t selfcheckout:1.0 .`
+## `docker build -t selfcheckout:1.0 .`
 
 
 4. Run the container. 
 Note: We run the container in detached mode because when the front-end starts alongiside the container. We need to execute a second command to run the backend.
 
 
-### `docker run --name selfcheckout -p 3000:3000 -p 5000:5000 selfcheckout:1.0`
+`docker run --name selfcheckout -p 3000:3000 -p 5000:5000 selfcheckout:1.0`
 
 
 5. Run this command to start the backend server
