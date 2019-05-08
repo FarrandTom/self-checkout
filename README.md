@@ -91,7 +91,7 @@ Follow the instructions below to build this docker container and run the app. Pl
 Note: We run the container in detached mode because when the front-end starts alongiside the container. We need to execute a second command to run the backend.
 
 
-#### `docker run --name selfcheckout -p 3000:3000 -p 5000:5000 selfcheckout:1.0`
+#### `docker run -d --name selfcheckout -p 3000:3000 -p 5000:5000 selfcheckout:1.0`
 
 
 5. Run this command to start the backend server
