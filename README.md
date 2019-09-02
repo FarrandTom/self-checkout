@@ -1,14 +1,12 @@
 # Getting Started...
 
-1. Clone the repository
+1. Clone the repository `git clone https://github.com/FarrandTom/self-checkout.git`
 
-#### `git clone https://github.com/FarrandTom/self-checkout.git`
+2. Create an appropriate virtual environment, using `backend_tf/environment.yml`. This can be achieved by running the command: `conda create --name self_checkout --file environment.yml`
 
-2. To run the application front end `npm start`
+3. To start the backend, which serves the object detection model, change into the `backend_tf/` folder, and then run `python app.py`.
 
-3. Create an appropriate virtual environment, using `requirements.txt`.
-
-4. To start the backend, which serves the object detection model, change into the `backend_tf/` folder, and then run `python app.py`.
+4. To run the application front end `npm start`
 
 5. You should then be able to capture images of bananas, apples, and oranges which will register in the price UI. The initial inference usually takes longer than subsequent images, so bear that in mind.
 
