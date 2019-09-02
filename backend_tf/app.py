@@ -1,7 +1,7 @@
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 
-from scipy.misc import imread, imresize
+from imageio import imread
 import numpy as np
 import tensorflow as tf
 from io import BytesIO
