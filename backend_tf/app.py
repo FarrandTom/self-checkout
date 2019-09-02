@@ -1,3 +1,4 @@
+import os
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 
@@ -19,10 +20,8 @@ CORS(app)
 
 # Defining the model configuration files.
 # Change these files to add your own model!
-MODEL_PATH = './model/graph.pb'
-LABEL_PATH = './model/labels.txt'
-
-MODEL_DETECT_PATH = './model/frozen_inference_graph.pb'
+dir_path = os.path.dirname(os.path.realpath(__file__))
+MODEL_DETECT_PATH = dir_path + '/model/frozen_inference_graph.pb'
 
 ##########################################################
 # Menu of loaded groceries, and their respective prices. #
@@ -193,4 +192,4 @@ if __name__ == '__main__':
     detection_num_op=graph.get_operation_by_name('num_detections')
     detection_num=detection_num_op.outputs[0]
 
-    app.run(debug=True, host='0.0.0.0')
+    app.run(debug=False, host='0.0.0.0')
