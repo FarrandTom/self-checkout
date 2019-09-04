@@ -48,7 +48,6 @@ def getI420FromBase64(codec):
     base64_data = re.sub(b'^data:image/.+;base64,', b'', codec)
     byte_data = base64.b64decode(base64_data)
     image_data = BytesIO(byte_data)
-    print(image_data)
     img = Image.open(image_data)
     return img
 
