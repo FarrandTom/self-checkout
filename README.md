@@ -3,6 +3,9 @@
 1. Clone the repository `git clone https://github.com/FarrandTom/self-checkout.git`
 
 2. Create an appropriate virtual environment, using `backend_tf/environment.yml`. This can be achieved by running the command: `conda create --name self_checkout --file environment.yml`
+You will then need to pip install two packages within that environment. Therefore, after you activate the environment (e.g. `conda activate self_checkout`) run: 
+`pip install flask_cors` (This package is not on a conda channel)
+`pip install imageio` (This installs pillow with the module for webpack images- which the conda install does not)
 
 3. To start the backend, which serves the object detection model, change into the `backend_tf/` folder, and then run `python app.py`.
 
