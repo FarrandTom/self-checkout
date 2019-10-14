@@ -9,7 +9,7 @@ You will then need to pip install two packages within that environment. Therefor
 
 3. To start the backend, which serves the object detection model, change into the `backend_tf/` folder, and then run `python app.py`.
 
-4. To run the application front end `npm start`
+4. To run the application front end `npm start` (It's worth updating your node version first too `npm install npm@latest -g`)
 
 5. You should then be able to capture images of bananas, apples, and oranges which will register in the price UI. The initial inference usually takes longer than subsequent images, so bear that in mind.
 
