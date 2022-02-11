@@ -8,7 +8,7 @@
     "carbon-components": "^9.68.12",
     "carbon-components-react": "^6.82.0",
     "carbon-icons": "^7.0.7",
-    "node-sass": "^4.11.0",
+    "node-sass": "^7.0.0",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "react-scripts": "2.1.3",
